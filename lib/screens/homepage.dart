@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meditation_app/screens/playlist_page.dart';
 import 'package:meditation_app/utils/constants.dart';
 
 class HomePage extends StatelessWidget {
@@ -6,13 +7,13 @@ class HomePage extends StatelessWidget {
 
   HomePage(this.quote);
 
-  buildMain(double height, double width) {
+  buildMain(BuildContext context, double height, double width) {
     return Scaffold(
       body: Column(
         children: [
           buildTopPart(height, width),
           buildPlaylistPart(height, width),
-          buildCreatorPart(height, width),
+          buildCreatorPart(context, height, width),
         ],
       ),
     );
@@ -95,32 +96,36 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  buildCreatorPart(double height, double width) {
-    return Container(
-      padding: EdgeInsets.only(left: 20),
-      height: height * 0.3,
-      width: width,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "Top Creator",
-            style: TextStyle(
-              color: AppColor.greenColor,
-              fontWeight: FontWeight.bold,
-              fontSize: 18,
+  buildCreatorPart(BuildContext context, double height, double width) {
+    return InkWell(
+      onTap: () => Navigator.push(
+          context, MaterialPageRoute(builder: (context) => PlaylistPage())),
+      child: Container(
+        padding: EdgeInsets.only(left: 20),
+        height: height * 0.3,
+        width: width,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Top Creator",
+              style: TextStyle(
+                color: AppColor.greenColor,
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+              ),
             ),
-          ),
-          Expanded(
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: [
-                buildCreatorCard(),
-                buildCreatorCard(),
-              ],
+            Expanded(
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  buildCreatorCard(),
+                  buildCreatorCard(),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -198,6 +203,6 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    return buildMain(height, width);
+    return buildMain(context, height, width);
   }
 }
