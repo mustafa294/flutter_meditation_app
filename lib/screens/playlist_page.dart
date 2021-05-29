@@ -111,7 +111,7 @@ class PlaylistPage extends StatelessWidget {
 
   //this part returns available space of the screen after upper part
   // and contains Playlist songs
-  buildLowerPart() {
+  Widget buildLowerPart() {
     return Expanded(
       child: Column(
         children: [
@@ -135,7 +135,7 @@ class PlaylistPage extends StatelessWidget {
     );
   }
 
-  buildPlaylistTitle() {
+  Widget buildPlaylistTitle() {
     return Padding(
       padding: EdgeInsets.only(
         top: 70,
@@ -152,7 +152,7 @@ class PlaylistPage extends StatelessWidget {
     );
   }
 
-  buildPlayListSongContainer(
+  Container buildPlayListSongContainer(
       {String songName, String singerName, String songDuration}) {
     return Container(
         height: 100,
